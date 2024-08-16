@@ -3,9 +3,9 @@
  * https://jestjs.io/docs/configuration
  */
 
-import type {Config} from 'jest';
+//import {Config} from 'jest';
 
-const config: Config = {
+const config = {
   
   collectCoverage: true,
 
@@ -16,4 +16,4 @@ const config: Config = {
   coverageProvider: "v8",
 };
 
-export default config;
+//export default config;

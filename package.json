@@ -12,6 +12,9 @@
   "scripts": {
     "test": "jest"
   },
+  "standard":{
+    "env" : ["jest"]
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
