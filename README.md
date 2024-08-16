@@ -7,3 +7,5 @@ Steps to setup the project:
         * Added on the 'package.json' the "lint-staged": { ["standard"] }. This will force the project to build all files that are on the staged area using the standard library, ensuring that the code is validated before building it. 
     3. Installed Husky `npm i husky@latest -D` to enable hooks to be executed before commiting
         * Addet to the 'package.json' the line "husky":{ "hooks":{"pre-commit":"lint-staged"} }. This enable the hook to be executed before commiting. This will build the project in the staged area and verify for code quality because of the standard library.
+    4. Installed Jest `npm i jest -D` to execute the tests for the TDD.
+        * `npm init jest@latest` initiates Jest.
