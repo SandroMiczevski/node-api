@@ -4,7 +4,7 @@ class LoginRouter{
             statusCode : 200
         }
 
-        if (httpRequest.body.email == null){
+        if ((httpRequest.body.email == null) || (httpRequest.body.password == null)){
             httpResponse.statusCode = 400;
             return httpResponse;
         }
@@ -14,7 +14,7 @@ class LoginRouter{
 
 
 describe('Login Router', () => {
-    test('Should return code 400 if email is not provided', () => {
+    test('Returns statusCode 400 if email is not provided', () => {
         //System Under Test - SUT
         const sut = new LoginRouter()
         const httpRequest = {
@@ -25,4 +25,15 @@ describe('Login Router', () => {
         const httpResponse = sut.route(httpRequest)
         expect(httpResponse.statusCode).toBe(400)
     })
-})
+
+    test('Returns statusCode 400 if password is not provided', () => {
+        const sut = new LoginRouter();
+        const httpRequest = {
+            body : {
+                email: 'email@email.com'
+            }
+        }
+        const httpResponse = sut.route(httpRequest);
+        expect(httpResponse.statusCode).toBe(400);
+    })
+});
