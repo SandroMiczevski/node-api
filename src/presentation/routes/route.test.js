@@ -1,25 +1,34 @@
 class LoginRouter{
     route(httpRequest){
         
-        const httpResponse = {
-            statusCode : 200
+        if (!httpRequest || !httpRequest.body){
+            return httpResponse.serverError()
         }
-        
-        if (!httpRequest || !httpRequest.body) return (httpResponse.statusCode = 500) 
 
         const {email , password} = httpRequest.body
 
         if (email == null || password == null){
-            httpResponse.statusCode = 400;
-            return httpResponse;
+            return httpResponse.badRequest();
         }
 
         return httpResponse
     }
 }
 
-
-
+class httpResponse{
+    static badRequest(){
+        return {
+            statusCode : 400
+        }
+    }
+    
+    static serverError(){
+        return {
+            statusCode : 500
+        }
+    }
+}
+;
 describe('Login Router', () => {
     test('Returns statusCode 400 if email is not provided', () => {
         //System Under Test - SUT
@@ -47,13 +56,13 @@ describe('Login Router', () => {
     test('Returns statusCode 500 when LoginRoute is receiveing empty httpRequest', () =>{
         const sut = new LoginRouter();
         const httpResponse = sut.route();
-        expect(httpResponse).toBe(500);
+        expect(httpResponse.statusCode).toBe(500);
     })
 
     test ('Return statusCode 500 if httpRequest has no body', () => {
         const sut = new LoginRouter()
         const httpRequest = {}
         const httpResponse = sut.route(httpRequest);
-        expect(httpResponse).toBe(500)
+        expect(httpResponse.statusCode).toBe(500)
     })
 });
