@@ -1,4 +1,10 @@
 # node-api
+
+--
+What to dive deeper onto: 
+- Error classes (Helper/missingParam...)
+- Mock function or test doubles 
+--
 Creating a Node API using Clean Architecture and Test Driven Development (TDD)
 
 Steps to setup the project:
@@ -15,3 +21,5 @@ Steps to setup the project:
     4. Installed Jest `npm i jest -D` to execute the tests for the TDD.
 
         - `npm init jest@latest` initiates Jest.
+
+
