@@ -2,6 +2,7 @@ const LoginRouter = require('./loginRouter')
 const MissingParamError = require('../helpers/missingParamError')
 const UnauthorizedError = require('../helpers/unauthorizedParamError')
 const ServerError = require('../helpers/serverError')
+const InvalidParamError = require('../helpers/InvalidParamError')
 
 class AuthUseCaseSpy {
   async auth (email, password) {
@@ -11,15 +12,28 @@ class AuthUseCaseSpy {
   }
 }
 
+class EmailValidatorSpy {
+  isValid (email) {
+    //   var emailFormat = /^[a-zA-Z0-9_.+]*[a-zA-Z][a-zA-Z0-9_.+]*@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    //   return (email.match(emailFormat))
+    return this.isEmailValid
+  }
+}
+
 const makeSut = () => {
   // Test double. This is just to mock the behaviour of the Authentication class
   const authUseCaseSpy = new AuthUseCaseSpy()
   authUseCaseSpy.accessToken = 'valid_token'
-  const sut = new LoginRouter(authUseCaseSpy)
+
+  const emailValidatorSpy = new EmailValidatorSpy()
+  emailValidatorSpy.isEmailValid = true
+
+  const sut = new LoginRouter(authUseCaseSpy, emailValidatorSpy)
 
   return {
     sut,
-    authUseCaseSpy
+    authUseCaseSpy,
+    emailValidatorSpy
   }
 }
 
@@ -137,5 +151,19 @@ describe('Login Router', () => {
     const httpResponse = await sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new ServerError())
+  })
+
+  test('Returns statusCode 400 if email does not meet email criteria', async () => {
+    const { sut, emailValidatorSpy } = makeSut()
+    emailValidatorSpy.isEmailValid = false
+    const httpRequest = {
+      body: {
+        email: 'invalid-email@',
+        password: 'password'
+      }
+    }
+    const httpResponse = await sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(400)
+    expect(httpResponse.body).toEqual(new InvalidParamError('email'))
   })
 })

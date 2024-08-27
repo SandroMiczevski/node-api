@@ -1,26 +1,22 @@
-const MissingParamError = require('./missingParamError')
-const UnauthorizedError = require('./unauthorizedParamError')
-const ServerError = require('./serverError')
-
 module.exports = class httpResponse {
-  static badRequest (paramName) {
+  static badRequest (error) {
     return {
       statusCode: 400,
-      body: new MissingParamError(paramName)
+      body: error
     }
   }
 
-  static serverError (paramName) {
+  static serverError (error) {
     return {
       statusCode: 500,
-      body: new ServerError()
+      body: error
     }
   }
 
-  static accessDenied (paramName) {
+  static accessDenied (error) {
     return {
       statusCode: 401,
-      body: new UnauthorizedError()
+      body: error
     }
   }
 
