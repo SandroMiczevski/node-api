@@ -25,7 +25,6 @@
     "hooks": {
       "pre-commit": "lint-staged",
       "pre-push": "test:ci"
-
     }
   },
   "author": "",
