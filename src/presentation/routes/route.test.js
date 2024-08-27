@@ -16,6 +16,7 @@ class EmailValidatorSpy {
   isValid (email) {
     //   var emailFormat = /^[a-zA-Z0-9_.+]*[a-zA-Z][a-zA-Z0-9_.+]*@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     //   return (email.match(emailFormat))
+    this.email = email
     return this.isEmailValid
   }
 }
@@ -122,8 +123,8 @@ describe('Login Router', () => {
     const { sut, authUseCaseSpy } = makeSut()
     const httpRequest = {
       body: {
-        email: 'invalid_email@email.com',
-        password: 'invalid_password'
+        email: 'email@email.com',
+        password: 'password'
       }
     }
     const httpResponse = await sut.route(httpRequest)
@@ -165,5 +166,78 @@ describe('Login Router', () => {
     const httpResponse = await sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new InvalidParamError('email'))
+  })
+
+  // Does it return 500 if no EmailValidator is provided?
+  test('Returns statusCode 500 if no EmailValidator is provided', async () => {
+    const authUseCase = new AuthUseCaseSpy()
+    const sut = new LoginRouter(authUseCase)
+
+    const httpRequest = {
+      body: {
+        email: 'email@email.com',
+        password: '_password'
+      }
+    }
+
+    const httpResponse = await sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new ServerError())
+  })
+
+  // Does it return 500 if EmailValidator is provided but no "isValid" method is available?
+  test('Returns statusCode 500 if EmailValidator is provided but no "isValid" method is available', async () => {
+    class EmailValidatorSpyInvalid {}
+
+    const emailValidatorSpy = new EmailValidatorSpyInvalid()
+    const authUseCase = new AuthUseCaseSpy()
+    const sut = new LoginRouter(authUseCase, emailValidatorSpy)
+
+    const httpRequest = {
+      body: {
+        email: 'email@email.com',
+        password: '_password'
+      }
+    }
+
+    const httpResponse = await sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new ServerError())
+  })
+
+  // Does it reuturn 500 if EmailValidator throws an error?
+  test('Returns statusCode 500 if EmailValidator throws an error', async () => {
+    class EmailValidatorSpyError {
+      isValid (email) {
+        throw new Error()
+      }
+    }
+    const emailValidator = new EmailValidatorSpyError()
+    const authUseCase = new AuthUseCaseSpy()
+    const sut = new LoginRouter(authUseCase, emailValidator)
+
+    const httpRequest = {
+      body: {
+        email: 'email@email.com',
+        password: '_password'
+      }
+    }
+
+    const httpResponse = await sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new ServerError())
+  })
+
+  test('Calls email validator and returns 200 when right email is provided', async () => {
+    const { sut, emailValidatorSpy } = makeSut()
+    const httpRequest = {
+      body: {
+        email: 'email@email.com',
+        password: '_password'
+      }
+    }
+    const httpResponse = await sut.route(httpRequest)
+    expect(emailValidatorSpy.email).toBe(httpRequest.body.email)
+    expect(httpResponse.statusCode).toBe(200)
   })
 })
