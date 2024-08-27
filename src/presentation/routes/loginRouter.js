@@ -33,6 +33,7 @@ module.exports = class LoginRouter {
 
       return httpResponse.authSuccessful(accessToken)
     } catch (error) {
+      console.error(error)
       return httpResponse.serverError(new ServerError())
     }
     // }

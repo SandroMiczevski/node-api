@@ -11,8 +11,8 @@
     ]
   },
   "scripts": {
-    "test": "jest --watchAll",
-    "test:staged": "jest --passWithNoTests",
+    "test": "jest --watchAll --silent --verbose",
+    "test:staged": "jest --passWithNoTests --findRelatedTests --silent",
     "prepare": "husky"
   },
   "standard": {
