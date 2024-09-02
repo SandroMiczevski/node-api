@@ -1,8 +1,6 @@
 const LoginRouter = require('./loginRouter')
-const MissingParamError = require('../helpers/missingParamError')
-const UnauthorizedError = require('../helpers/unauthorizedParamError')
-const ServerError = require('../helpers/serverError')
-const InvalidParamError = require('../helpers/InvalidParamError')
+
+const { MissingParamError, InvalidParamError, UnauthorizedError, ServerError } = require('../errors')
 
 class AuthUseCaseSpy {
   async auth (email, password) {
