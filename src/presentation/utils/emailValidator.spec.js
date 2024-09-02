@@ -2,7 +2,6 @@ const validator = require('validator')
 
 class EmailValidator {
   isValid (email) {
-    this.email = email
     return validator.isEmail(email)
   }
 }
