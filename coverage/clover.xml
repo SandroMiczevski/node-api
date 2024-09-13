@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1725258201068" clover="3.2.0">
-  <project timestamp="1725258201068" name="All files">
-    <metrics statements="44" coveredstatements="44" conditionals="10" coveredconditionals="9" methods="11" coveredmethods="11" elements="65" coveredelements="64" complexity="0" loc="44" ncloc="44" packages="4" files="8" classes="8"/>
-    <package name="errors">
-      <metrics statements="17" coveredstatements="17" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="4"/>
-      <file name="InvalidParamError.js" path="C:\Users\sandr\Documents\Projects\Manguinhos Courses\node-api\src\presentation\errors\InvalidParamError.js">
-        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-      </file>
+<coverage generated="1725374208721" clover="3.2.0">
+  <project timestamp="1725374208721" name="All files">
+    <metrics statements="44" coveredstatements="44" conditionals="10" coveredconditionals="9" methods="11" coveredmethods="11" elements="65" coveredelements="64" complexity="0" loc="44" ncloc="44" packages="5" files="8" classes="8"/>
+    <package name="presentation.errors">
+      <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
       <file name="index.js" path="C:\Users\sandr\Documents\Projects\Manguinhos Courses\node-api\src\presentation\errors\index.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
@@ -17,12 +11,6 @@
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-      </file>
-      <file name="missingParamError.js" path="C:\Users\sandr\Documents\Projects\Manguinhos Courses\node-api\src\presentation\errors\missingParamError.js">
-        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="4" count="4" type="stmt"/>
-        <line num="5" count="4" type="stmt"/>
       </file>
       <file name="serverError.js" path="C:\Users\sandr\Documents\Projects\Manguinhos Courses\node-api\src\presentation\errors\serverError.js">
         <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
@@ -37,7 +25,7 @@
         <line num="5" count="2" type="stmt"/>
       </file>
     </package>
-    <package name="helpers">
+    <package name="presentation.helpers">
       <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="httpResponse.js" path="C:\Users\sandr\Documents\Projects\Manguinhos Courses\node-api\src\presentation\helpers\httpResponse.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
@@ -48,7 +36,7 @@
         <line num="24" count="3" type="stmt"/>
       </file>
     </package>
-    <package name="routes">
+    <package name="presentation.routes">
       <metrics statements="19" coveredstatements="19" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
       <file name="loginRouter.js" path="C:\Users\sandr\Documents\Projects\Manguinhos Courses\node-api\src\presentation\routes\loginRouter.js">
         <metrics statements="19" coveredstatements="19" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
@@ -75,11 +63,26 @@
     </package>
     <package name="utils">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="emailValidator.js" path="C:\Users\sandr\Documents\Projects\Manguinhos Courses\node-api\src\presentation\utils\emailValidator.js">
+      <file name="emailValidator.js" path="C:\Users\sandr\Documents\Projects\Manguinhos Courses\node-api\src\utils\emailValidator.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="5" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="utils.errors">
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="InvalidParamError.js" path="C:\Users\sandr\Documents\Projects\Manguinhos Courses\node-api\src\utils\errors\InvalidParamError.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+      </file>
+      <file name="missingParamError.js" path="C:\Users\sandr\Documents\Projects\Manguinhos Courses\node-api\src\utils\errors\missingParamError.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="4" count="8" type="stmt"/>
+        <line num="5" count="8" type="stmt"/>
       </file>
     </package>
   </project>
