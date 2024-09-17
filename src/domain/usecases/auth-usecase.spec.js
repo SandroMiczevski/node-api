@@ -10,15 +10,28 @@ class LoadUserByEmailRepository {
   }
 }
 
+class Encrypter {
+  async compare (password) {
+    this.password = password
+    this.hashedPassword = 'hashed_password'
+    return true
+  }
+}
+
 const makeSut = () => {
   const loadUserByEmailRepositorySpy = new LoadUserByEmailRepository()
-  loadUserByEmailRepositorySpy.user = {}
+  loadUserByEmailRepositorySpy.user = {
+    password: 'hashed_password'
+  }
 
-  const sut = new AuthUseCase(loadUserByEmailRepositorySpy)
+  const encrypterSpy = new Encrypter()
+
+  const sut = new AuthUseCase(loadUserByEmailRepositorySpy, encrypterSpy)
 
   return {
     sut,
-    loadUserByEmailRepositorySpy
+    loadUserByEmailRepositorySpy,
+    encrypterSpy
   }
 }
 
@@ -52,7 +65,7 @@ describe('AuthUseCase', () => {
     // const { sut } = makeSut()
     const loadUserByEmailRepositorySpy = new LoadUserByEmailRepository()
     loadUserByEmailRepositorySpy.user = null
-    const sut = new AuthUseCase(loadUserByEmailRepositorySpy)
+    const sut = new AuthUseCase(loadUserByEmailRepositorySpy, new Encrypter())
     const accessToken = await sut.auth('any_email@email.com', 'any_password')
     expect(accessToken).toBeNull()
   })
@@ -61,5 +74,12 @@ describe('AuthUseCase', () => {
     const { sut } = makeSut()
     const accessToken = await sut.auth('any_email@email.com', 'invalid_password')
     expect(accessToken).toBeNull()
+  })
+
+  test('Encrypter is being called with right values', async () => {
+    const { sut, loadUserByEmailRepositorySpy, encrypterSpy } = makeSut()
+    await sut.auth('any_email@email.com', 'any_password')
+    expect(encrypterSpy.password).toBe('any_password')
+    expect(encrypterSpy.hashedPassword).toBe(loadUserByEmailRepositorySpy.user.password)
   })
 })
