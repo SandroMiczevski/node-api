@@ -18,18 +18,14 @@ module.exports = class AuthUseCase {
 
     // Ensuring that the user has valid e-mail and password
     const user = await this.loadUserByEmailRepository.load(email)
-    if (user == null) {
-      return null
-    }
-
     const isValid = await this.encrypter.compare(password)
-    if (!isValid) {
-      return null
+
+    if (user && isValid) {
+      // Generates accessToken
+      const accessToken = await this.tokenGenerator.generate(user.id)
+      return accessToken
     }
 
-    // Generates accessToken
-    const accessToken = await this.tokenGenerator.generate(user.id)
-
-    return accessToken
+    return null
   }
 }
