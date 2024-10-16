@@ -122,4 +122,12 @@ describe('AuthUseCase', () => {
 
     expect(tokenGeneratorSpy.userID).toBe(loadUserByEmailRepositorySpy.user.id)
   })
+
+  test('Ensure that TokenGenerator is returning a valid accessToken', async () => {
+    const { sut, tokenGeneratorSpy } = makeSut()
+    const accessToken = await sut.auth('any_email@email.com', 'any_password')
+
+    expect(accessToken).toBe(tokenGeneratorSpy.accessToken)
+    expect(accessToken).toBeTruthy() // Check if the object is not null/false/etc
+  })
 })
