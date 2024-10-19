@@ -12,8 +12,6 @@ module.exports = class AuthUseCase {
       throw new MissingParamError('email')
     } else if (!password) {
       throw new MissingParamError('password')
-    } else if (!this.loadUserByEmailRepository) {
-      throw new MissingParamError('loadUserByEmailRepository')
     }
 
     // Ensuring that the user has valid e-mail and password
