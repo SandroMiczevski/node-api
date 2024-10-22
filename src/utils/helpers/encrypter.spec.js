@@ -21,4 +21,14 @@ describe('Test integration of Encrypter', () => {
     const isValid = await sut.compare('any_value', 'hashed_value')
     expect(isValid).toBe(false)
   })
+
+  test('Ensure that bcrypt is receiving the right values', async () => {
+    const sut = new Encrypter()
+    const value = 'any_value'
+    const hash = 'hashed_value'
+
+    await sut.compare(value, hash)
+    expect(bcrypt.value).toBe(value)
+    expect(bcrypt.hash).toBe(hash)
+  })
 })
