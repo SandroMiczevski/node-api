@@ -1,15 +1,6 @@
 const bcrypt = require('bcrypt')
 const MissingParamError = require('../errors/missingParamError')
-
-class Encrypter {
-  async compare (value, hash) {
-    if (!value || !hash) {
-      throw new MissingParamError('Password or Hash')
-    }
-    const isValid = await bcrypt.compare(value, hash)
-    return isValid
-  }
-}
+const Encrypter = require('./encrypter')
 
 const makeSut = () => {
   const sut = new Encrypter()
@@ -48,5 +39,6 @@ describe('Test integration of Encrypter', () => {
     const promise = sut.compare()
 
     expect(promise).rejects.toThrow(new MissingParamError('Password or Hash'))
+    expect(sut.compare('any_password')).rejects.toThrow(new MissingParamError('Password or Hash'))
   })
 })
