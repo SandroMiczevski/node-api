@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1729606565845" clover="3.2.0">
-  <project timestamp="1729606565845" name="All files">
-    <metrics statements="61" coveredstatements="61" conditionals="19" coveredconditionals="18" methods="13" coveredmethods="13" elements="93" coveredelements="92" complexity="0" loc="61" ncloc="61" packages="6" files="9" classes="9"/>
+<coverage generated="1729693573100" clover="3.2.0">
+  <project timestamp="1729693573100" name="All files">
+    <metrics statements="71" coveredstatements="71" conditionals="25" coveredconditionals="24" methods="14" coveredmethods="14" elements="110" coveredelements="109" complexity="0" loc="71" ncloc="71" packages="6" files="10" classes="10"/>
     <package name="domain.usecases">
       <metrics statements="17" coveredstatements="17" conditionals="9" coveredconditionals="9" methods="2" coveredmethods="2"/>
       <file name="authUseCase.js" path="C:\Users\sandr\Documents\Projects\Manguinhos Courses\node-api\src\domain\usecases\authUseCase.js">
@@ -94,18 +94,31 @@
       </file>
       <file name="missingParamError.js" path="C:\Users\sandr\Documents\Projects\Manguinhos Courses\node-api\src\utils\errors\missingParamError.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="4" count="8" type="stmt"/>
-        <line num="5" count="8" type="stmt"/>
+        <line num="1" count="4" type="stmt"/>
+        <line num="4" count="14" type="stmt"/>
+        <line num="5" count="14" type="stmt"/>
       </file>
     </package>
     <package name="utils.helpers">
-      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <metrics statements="13" coveredstatements="13" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
       <file name="emailValidator.js" path="C:\Users\sandr\Documents\Projects\Manguinhos Courses\node-api\src\utils\helpers\emailValidator.js">
-        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="5" count="3" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+      </file>
+      <file name="encrypter.js" path="C:\Users\sandr\Documents\Projects\Manguinhos Courses\node-api\src\utils\helpers\encrypter.js">
+        <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="5" type="cond" truecount="4" falsecount="0"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
       </file>
     </package>
   </project>
